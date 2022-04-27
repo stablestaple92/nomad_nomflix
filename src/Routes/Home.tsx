@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { Navigate, useMatch, useNavigate } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getMovies, IGetMoviesResult } from "../api";
 import { makeImagePath } from "./utils";
@@ -17,13 +17,13 @@ const Loader = styled.div`
   align-items: center;
 `;
 
-const Banner = styled.div<{bgPhoto: string}>`
+const Banner = styled.div<{bgphoto: string}>`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 60px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${props => props.bgPhoto});
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${props => props.bgphoto});
   background-size: cover;
 `;
 
@@ -50,9 +50,9 @@ const Row = styled(motion.div)`
   width: 100%;
 `;
 
-const Box = styled(motion.div)<{bgPhoto: string}>`
+const Box = styled(motion.div)<{bgphoto: string}>`
   background-color: white;
-  background-image: url(${props => props.bgPhoto});
+  background-image: url(${props => props.bgphoto});
   background-size: cover;
   background-position: center center;
   height: 200px;
@@ -158,7 +158,7 @@ function Home () {
         <Loader>Loading...</Loader>
       ) : (
         <>
-          <Banner bgPhoto={makeImagePath(data?.results[0].backdrop_path || "")}>
+          <Banner bgphoto={makeImagePath(data?.results[0].backdrop_path || "")}>
             <Title>{data?.results[0].title}</Title>
             <Overview>{data?.results[0].overview}</Overview>
           </Banner>
@@ -183,7 +183,7 @@ function Home () {
                       whileHover="hover"
                       onClick={() => onBoxClicked(movie.id)}
                       transition={{ type: "tween" }}
-                      bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
+                      bgphoto={makeImagePath(movie.backdrop_path, "w500")}
                     >
                       
                       <Info
